@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ <!-- ##### Breadcumb Area Start ##### -->
+ <section class="breadcumb-area bg-img" style="background-image: url({{ listing.image.url }});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+        </div>
+    </div>
+</section>
+
+<!-- Bosh sahifaga qaytish ikonkasi -->
+<a href="{% url 'home' %}" class="btn btn-primary">
+    <i class="fa-solid fa-house"></i> Bosh sahifa
+</a>
+
+ <section class="south-blog-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+               
+                <!-- Single Blog Area -->
+                <div class="single-blog-area mb-50">
+                    <div class="blog-post-thumbnail">
+                        <img src="{{ listing.image.url }}" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <!-- Date -->
+                        <div class="post-date">
+                            <a href="#">{{ listing.posted_at|date:"F d, Y" }}</a>
+                        </div>
+                        <!-- Headline -->
+                        <a href="#" class="headline">{{ listing.category }}</a>
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            <p><a href="#">{{ listing.city }}</a> |  <a href="#">{{ listing.address }}</a> |  <a href="#">{{ listing.price }} $</a></p>
+                        </div>
+                        <p>{{ listing.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content%}

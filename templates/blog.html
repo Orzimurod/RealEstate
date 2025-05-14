@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<section class="breadcumb-area bg-img" style="background-image: url({% static 'img/bg-img/blog.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcumb-content">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Breadcumb Area End ##### -->
+
+    {% comment %} <!-- Search Widget -->
+    <div class="search-widget-area mb-90">
+        <form action="#" method="get">
+            <input type="search" name="search" id="search" placeholder="Search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div> {% endcomment %}
+
+<!-- ##### Blog Area Start ##### -->
+<section class="south-blog-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+               {% for blog in blogs %}
+                <!-- Single Blog Area -->
+                <div class="single-blog-area mb-50">
+                    <!-- Post Thumbnail -->
+                    <div class="blog-post-thumbnail">
+                        <img src="{{ blog.image.url }}" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <!-- Date -->
+                        <div class="post-date">
+                            <a href="#">{{ blog.posted_at|date:"F d, Y" }}</a>
+                        </div>
+                        <!-- Headline -->
+                        <a href="#" class="headline">{{ blog.title }}</a>
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            <p><a href="#">Author</a> | <a href="#">{{ blog.author }}</a></p>
+                        </div>
+                        <p>{{ blog.description }}</p>
+                        <!-- Read More btn -->
+                        <a href="#" class="btn south-btn">Batafsil</a>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

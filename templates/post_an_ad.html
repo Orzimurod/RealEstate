@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<section class="breadcumb-area bg-img" style="background-image: url({% static 'img/bg-img/hero1.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcumb-content">
+                    <h3 class="breadcumb-title">E'lon Joylash</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Breadcumb Area End ##### -->
+
+<section class="south-contact-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-heading">
+                    <h6>Yangi e'lon joylash</h6>
+                </div>
+            </div>
+        </div>
+
+        <form action="{% url 'postadvert' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        E'lon joylash uchun quyidagi ma'lumotlarni to'ldiring.
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-12 col-md-6 form-group">
+                    <input type="text" name="title" class="form-control" placeholder="Sarlavha" required>
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <input type="number" name="price" class="form-control" placeholder="Narxi ($)" required>
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <select name="category" class="form-control" required>
+                        <option value="">Turini tanlang</option>
+                        <option value="HOVLI">Hovli</option>
+                        <option value="KOTTEJ">Kottej</option>
+                        <option value="TOMORQA">Tomorqa</option>
+                        <option value="KVARTIRA">Kvartira</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <select name="city" class="form-control" required>
+                        <option value="">Viloyatni tanlang</option>
+                        <option value="TOSHKENT">Toshkent</option>
+                        <option value="SIRDARYO">Sirdaryo</option>
+                        <option value="SAMARQAND">Samarqand</option>
+                        <option value="ANDIJON">Andijon</option>
+                        <option value="FARGONA">Farg‘ona</option>
+                        <option value="JIZZAX">Jizzax</option>
+                        <option value="NAVOIY">Navoiy</option>
+                        <option value="SURXONDARYO">Surxondaryo</option>
+                        <option value="QASHQADARYO">Qashqadaryo</option>
+                        <option value="XORAZM">Xorazm</option>
+                        <option value="QORAQALPOGISTON">Qoraqalpog‘iston</option>
+                        <option value="BUXORO">Buxoro</option>
+                        <option value="NAMANGAN">Namangan</option>
+                    </select>
+                </div>
+                <div class="col-12 form-group">
+                    <input type="text" name="address" class="form-control" placeholder="Manzil (masalan: Yunusobod, ko‘cha nomi)">
+                </div>
+                <div class="col-12 form-group">
+                    <textarea name="description" class="form-control" rows="4" placeholder="Qo‘shimcha ma’lumotlar..."></textarea>
+                </div>
+                <div class="col-12 form-group">
+                    <label>Rasm yuklang:</label>
+                    <input type="file" name="image" class="form-control" required>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn south-btn">E'lonni joylash</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+{% endblock content %}

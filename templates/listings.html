@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+ <!-- ##### Breadcumb Area Start ##### -->
+ <section class="breadcumb-area bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcumb-content">
+                    <h3 class="breadcumb-title">Barcha ko'chmas mulk e'lonlar ro'yhati</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Advance Search Area Start ##### -->
+<div class="south-search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="advanced-search-form">
+                    <!-- Search Title -->
+                    <div class="search-title">
+                        <p>Qidiruv</p>
+                    </div>
+                    <!-- Search Form -->
+                    <form action="{% url 'search' %}" method="get" id="advanceSearch">
+                        <div class="row">
+
+                            {% comment %} <div class="col-12 col-md-4 col-lg-3">
+                                <div class="form-group">
+                                    <input type="input" class="form-control" name="input" placeholder="Keyword">
+                                </div>
+                            </div> {% endcomment %}
+
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="city" placeholder="Shahar">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="category" placeholder="Hovli yoki kvartira">
+                                </div>
+                            </div>
+
+                            {% comment %} <div class="col-12 col-md-4 col-lg-3">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="bedrooms_num" placeholder="Yotoq xonalar soni">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 col-xl-3">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="bathrooms_num" placeholder="Yuvinish xonalar soni">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 col-xl-2">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="garage_num" placeholder="Garajlar soni">
+                                </div>
+                            </div> {% endcomment %}
+
+                            <div class="col-12 col-md-4 col-xl-2">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="price" placeholder="Narxi ($)">
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between align-items-end">
+                                <!-- Submit -->
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="btn south-btn">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Advance Search Area End ##### -->
+
+<!-- ##### Listing Content Wrapper Area Start ##### -->
+<section class="listings-content-wrapper section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="listings-top-meta d-flex justify-content-between mb-100">
+                    <div class="view-area d-flex align-items-center">
+                        <span>View as:</span>
+                        <div class="grid_view ml-15"><a href="#" class="active"><i class="fa fa-th" aria-hidden="true"></i></a></div>
+                        <div class="list_view ml-15"><a href="#"><i class="fa fa-th-list" aria-hidden="true"></i></a></div>
+                    </div>
+                    <div class="order-by-area d-flex align-items-center">
+                        <span class="mr-15">Order by:</span>
+                        <select>
+                          <option selected>Default</option>
+                          <option value="1">Newest</option>
+                          <option value="2">Sales</option>
+                          <option value="3">Ratings</option>
+                          <option value="3">Popularity</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- Single Featured Property -->
+            {% for listing in listings %}
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
+                    <!-- Property Thumbnail -->
+                    <div class="property-thumb">
+                        {% if listing.image %}
+                        <img src="{{ listing.image.url }}" alt="">
+                        {% endif %}
+                        <div class="tag">
+                            <a href="{% url 'listing_detail' listing.id %}"><span>Batafsil</span></a>
+                        </div>
+                        <div class="list-price">
+                            <p>{{ listing.price }}$</p>
+                        </div>
+                    </div>
+                    <!-- Property Content -->
+                    <div class="property-content">
+                        <h5>{{ listing.category }}</h5>
+                        <p class="location"><img src="{% static 'img/icons/location.png' %}" alt="">{{ listing.city }} | {{ listing.address }}</p>
+                        <p>{{ listing.description }}</p>
+                        <div class="property-meta-data d-flex align-items-end justify-content-between">
+                            <div class="bedrooms">
+                                <img src="{% static 'img/icons/new.png' %}" alt="">
+                                <span>{{ listing.bedrooms_num }}</span>
+                            </div>
+                            <div class="bathroom">
+                                <img src="{% static 'img/icons/bathtub.png' %}" alt="">
+                                <span>{{ listing.bathrooms_num }}</span>
+                            </div>
+                            <div class="garage">
+                                <img src="{% static 'img/icons/garage.png' %}" alt="">
+                                <span>{{ listing.garage_num }}</span>
+                            </div>
+                            <div class="space">
+                                <img src="{% static 'img/icons/space.png' %}" alt="">
+                                <span>{{ listing.area_size }}sq ft</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                        <p>Hech qanday natija topilmadi.</p>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="south-pagination d-flex justify-content-end">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link active" href="#">01</a></li>
+                            <li class="page-item"><a class="page-link" href="#">02</a></li>
+                            <li class="page-item"><a class="page-link" href="#">03</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ##### Listing Content Wrapper Area End ##### -->
+
+{% endblock content %}

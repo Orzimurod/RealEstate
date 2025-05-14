@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            {% for slide in slides %}
+            <div class="single-hero-slide bg-img" style="background-image: url({{ slide.image.url }});">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">{{ slide.description }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    <!-- ##### Hero Area End ##### -->
+
+
+    <!-- ##### Featured Properties Area Start ##### -->
+    <section class="featured-properties-area section-padding-100-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading wow fadeInUp">
+                        <h2>Eng so'nggi ko'chmas mulk e'lonlari</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Single Featured Property -->
+                {% for listing in latest_listings %}
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Property Thumbnail -->
+                        <div class="property-thumb">
+                            {% if listing.image %}
+                            <img src="{{ listing.image.url }}" alt="">
+                            {% endif %}
+                            <div class="tag">
+                                <span>Batafsil</span>
+                            </div>
+                            <div class="list-price">
+                                <p>{{ listing.price }}$</p>
+                            </div>
+                        </div>
+                        <!-- Property Content -->
+                        <div class="property-content">
+                            <h5>{{ listing.category }}</h5>
+                            <p class="location"><img src="{% static 'img/icons/location.png' %}" alt="">{{ listing.city }} | {{ listing.address }}</p>
+                            <p>{{ listing.description }}</p>
+                            <div class="property-meta-data d-flex align-items-end justify-content-between">
+                                <div class="bedrooms">
+                                    <img src="{% static 'img/icons/new.png' %}" alt="">
+                                    <span>{{ listing.bedrooms_num }}</span>
+                                </div>
+                                <div class="bathroom">
+                                    <img src="{% static 'img/icons/bathtub.png' %}" alt="">
+                                    <span>{{ listing.bathrooms_num }}</span>
+                                </div>
+                                <div class="garage">
+                                    <img src="{% static 'img/icons/garage.png' %}" alt="">
+                                    <span>{{ listing.garage_num }}</span>
+                                </div>
+                                <div class="space">
+                                    <img src="{% static 'img/icons/space.png' %}" alt="">
+                                    <span>{{ listing.area_size }}sq ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### Featured Properties Area End ##### -->
+
+    <!-- ##### Call To Action Area Start ##### -->
+     {% for ads in ad %}
+    <section class="call-to-action-area bg-fixed bg-overlay-black" style="background-image: url({{ ads.image.url }});">
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-12">
+                    <div class="cta-content text-center">
+                        <h2 class="wow fadeInUp" data-wow-delay="300ms">{{ ads.title }}</h2>
+                        <h6 class="wow fadeInUp" data-wow-delay="400ms">{{ ads.description }}</h6>
+                        <a href="#" class="btn south-btn mt-50 wow fadeInUp" data-wow-delay="500ms">{{ ads.posted_at }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+    <!-- ##### Call To Action Area End ##### -->
+
+
+    <!-- ##### Editor Area Start ##### -->
+    <section class="south-editor-area d-flex align-items-center">
+        {% for founderr in founders %}
+        <!-- Editor Content -->
+        <div class="editor-content-area">
+            <!-- Section Heading -->
+             
+            <div class="section-heading wow fadeInUp" data-wow-delay="250ms">
+                <img src="{% static 'img/icons/prize.png' %}" alt="">
+                <h2>{{ founderr.name }}</h2>
+                <p>Asoschi</p>
+            </div>
+            <p class="wow fadeInUp" data-wow-delay="500ms">{{ founderr.description }}</p>
+            <div class="address wow fadeInUp" data-wow-delay="750ms">
+                <h6><img src="{% static 'img/icons/phone-call.png' %}" alt="">{{ founderr.phone }}</h6>
+                <h6><img src="{% static 'img/icons/envelope.png' %}" alt="">{{ founderr.email }}</h6>
+            </div>
+            <div class="signature mt-50 wow fadeInUp" data-wow-delay="1000ms">
+                <img src="{% static 'img/core-img/signature.png' %}" alt="">
+            </div>
+        </div>
+
+        <!-- Editor Thumbnail -->
+        <div class="editor-thumbnail">
+            <img src="{{ founderr.image.url }}" alt="">
+        </div>
+        {% endfor %}
+    </section>
+    <!-- ##### Editor Area End ##### -->
+       
+{% endblock content %}
